@@ -12,7 +12,7 @@
 //   return ans && ans.trim().toLowerCase().startsWith('y');
 // }
 
-//========== ATM ==========\\
+//========== The Vault of the Realm ==========\\
 
 let usersName = prompt(`Greetings Quest-Bearer!\nName thyself`);
 alert(`Step forth ${usersName}!\nThe Vault bids thee welcome`);
@@ -21,8 +21,8 @@ alert(`Step forth ${usersName}!\nThe Vault bids thee welcome`);
 function atm() {
   let menu = true;
   while (menu) {
-    let options = prompt(`💰\n\n1. Gold Offering\n2. Gold Summoning\n3. Name Ledger\n4. Coin Balance\n5. Leave Vault\n\nSpeak your choice`);
-    let action = exit(options, "menu");
+    const options = prompt(`💰\n\n1. Gold Offering\n2. Gold Summoning\n3. Name Ledger\n4. Coin Balance\n5. Leave Vault\n\nSpeak your choice`);
+    const action = exit(options, "menu");
     if (action === "quit") {
       break;
     }

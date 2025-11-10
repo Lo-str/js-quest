@@ -1,4 +1,4 @@
-//========== Guessing Game ==========\\
+//========== The Seer's Challenge ==========\\
 
 function guessNumberGame() {
 
