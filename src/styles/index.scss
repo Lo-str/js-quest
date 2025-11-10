@@ -2,6 +2,7 @@
 
 .block {
     background-color: black;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,9 +15,9 @@
         margin: 0 auto;
         background: url(/src/images/bg.svg);
         background-repeat: no-repeat;
-        display: grid;             // easy centering
-        place-items: center;       // center content
-        padding: 1rem;             // optional inner padding
+        display: grid;
+        place-items: center;
+        padding: 1rem;
 
         @media (min-width: 1024px) {
         width: 60vw; 

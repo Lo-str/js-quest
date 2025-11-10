@@ -14,15 +14,14 @@
 
 //========== ATM ==========\\
 
-let usersName = prompt(`Hi!😃 Please enter your name: `);
-alert(`Welcome to your bank ${usersName}! 🌞`);
+let usersName = prompt(`Greetings Quest-Bearer!\nName thyself`);
+alert(`Step forth ${usersName}!\nThe Vault bids thee welcome`);
 
 // Main Menu
 function atm() {
   let menu = true;
   while (menu) {
-    alert("🏧\n\n1. Deposit\n2. Withdrawal\n3. Account Name\n4. Balance\n5. Exit")
-    let options = prompt(`Please choose an option: `);
+    let options = prompt(`💰\n\n1. Gold Offering\n2. Gold Summoning\n3. Name Ledger\n4. Coin Balance\n5. Leave Vault\n\nSpeak your choice`);
     let action = exit(options, "menu");
     if (action === "quit") {
       break;
@@ -32,7 +31,7 @@ function atm() {
 
       case "1": {
         while (true) {
-          const input = prompt(`Please enter deposit amount: `);
+          const input = prompt("State your tribute");
           const action = exit(input, "transaction");
           if (action === "menu") {
             break;
@@ -46,17 +45,23 @@ function atm() {
 
       case "2": {
         while (true) {
-          const input = prompt(`Please enter withdrawal amount: `);
+          if (account.balance === 0) {
+            alert("You reach into your purse… and find only air");
+            break;
+          } 
+          
+          const input = prompt("State your request");
           const action = exit(input, "transaction");
+
           if (action === "menu") {
             break;
           }
-
+          
           alert(account.withdrawal(input));
           break;
+        }
       }
       break;
-    }
 
       case "3": {
         alert(account.getAccountName());
@@ -69,12 +74,12 @@ function atm() {
       }
 
       case "5": 
-        alert("Have a lovely day! Bye!😎")
+        alert("May the realm favor your journey!")
         menu = false;
         break;
 
       default:
-        alert(account.accountError("Unvalid option 🙂"));
+        alert(account.accountError("The runes remain silent"));
         break;
     }
   }
@@ -110,7 +115,7 @@ function exit(value, level) {
   }
 
   else if (level === "menu") {
-    alert("Have a lovely day! Bye!😎")
+    alert("May the realm favor your journey!")
     return "quit";
   }
 
@@ -138,21 +143,21 @@ const account = {
   // deposit money onto the balance of the account
   deposit(input) {
     if(!isValidInput(input)) {
-      return this.accountError("Unvalid input!");
+      return this.accountError("The runes remain silent");
       }
 
     const num = Number(input);
     if (!isValidNumber(num)){
-      return this.accountError("Unvalid number!")
+      return this.accountError("The runes cannot read that value")
     }
 
     else if (num <= 0) {
-      return this.accountError("Your deposit must be greater than 0!")
+      return this.accountError("Gold of zero holds no worth!")
   }
     
     else {
       this.balance += num;
-      return `Your deposit was successfully added to your bank account!\nYour balance: 💲${this.balance}`
+      return `The Vault has received your tribute.\nYour balance now shows: 🪙${this.balance}`
     }
   },
 
@@ -160,31 +165,31 @@ const account = {
   withdrawal(input) {
 
     if(!isValidInput(input)) {
-      return this.accountError("Unvalid input")
+      return this.accountError("The runes remain silent")
       }
 
     const num = Number(input);
     if (!isValidNumber(num)){
-      return this.accountError("Unvalid number")
+      return this.accountError("The runes cannot read that value")
       }
 
     else if (num > this.balance) {
-      return this.accountError(`Looks like your balance can't follow!😮‍💨\n Your balance: 💲${this.balance}`)
+      return this.accountError(`Your holdings cannot bear that cost\nYour balance shows: 🪙${this.balance}`)
       }
 
     else if (num <= 0) {
-      return this.accountError("Your withdrawal must be greater than 0.")
+      return this.accountError("Gold of zero holds no worth!")
       }
   
     else {
       this.balance -= num;
-      return `With great power comes great responsibilities Padawan!💸\nTrade carefully 😌\nYour balance: 💲${this.balance}`
+      return `Beware, seeker — gold is power and with great power comes great responsibility!\nTrade carefully!\nYour balance now shows: 🪙${this.balance}`
       }
     },
 
   // display an error message to the user
   accountError(message) {
-    return `Oh nooo! ☠️\n${message}`;
+    return `Curses! 💀\n${message}`;
   },
 };
 
