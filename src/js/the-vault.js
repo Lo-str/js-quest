@@ -14,7 +14,7 @@
 
 //========== The Vault of the Realm ==========\\
 
-let usersName = prompt(`Greetings Quest-Bearer!\nName thyself`);
+let usersName = prompt(`Greetings Brave One!\nName thyself`);
 alert(`Step forth ${usersName}!\nThe Vault bids thee welcome`);
 
 // Main Menu
@@ -48,15 +48,15 @@ function atm() {
           if (account.balance === 0) {
             alert("You reach into your purse… and find only air");
             break;
-          } 
-          
+          }
+
           const input = prompt("State your request");
           const action = exit(input, "transaction");
 
           if (action === "menu") {
             break;
           }
-          
+
           alert(account.withdrawal(input));
           break;
         }
@@ -73,7 +73,7 @@ function atm() {
         break;
       }
 
-      case "5": 
+      case "5":
         alert("May the realm favor your journey!")
         menu = false;
         break;
@@ -83,7 +83,7 @@ function atm() {
         break;
     }
   }
-} 
+}
 
 function isValidNumber(value) {
   if (typeof value === "number" && !Number.isNaN(value)) {
@@ -98,11 +98,11 @@ function isValidInput(input) {
   if (input === null ) {
     return false;
   }
-  
+
   else if (input.trim() === "") {
     return false;
-  } 
-  
+  }
+
   else {
     return true;
   }
@@ -154,7 +154,7 @@ const account = {
     else if (num <= 0) {
       return this.accountError("Gold of zero holds no worth!")
   }
-    
+
     else {
       this.balance += num;
       return `The Vault has received your tribute.\nYour balance now shows: 🪙${this.balance}`
@@ -180,7 +180,7 @@ const account = {
     else if (num <= 0) {
       return this.accountError("Gold of zero holds no worth!")
       }
-  
+
     else {
       this.balance -= num;
       return `Beware, seeker — gold is power and with great power comes great responsibility!\nTrade carefully!\nYour balance now shows: 🪙${this.balance}`

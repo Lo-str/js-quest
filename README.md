@@ -55,7 +55,7 @@
 
   ================  THE LABORATORIUM  ================
 
-    Create a small app to track books you’ve read or want to read (If you are not into books, feel free to change it to movies, etc). Use prompt and alert to simulate the menu.
+    Create a small app to track books you’ve read or want to read. Use prompt and alert to simulate the menu.
 
     You will:
     · Use objects to represent books
@@ -84,4 +84,4 @@
     · push( )
     · forEach( )
     · find( )
-    · filter( ) 
+    · filter( )
