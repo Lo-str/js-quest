@@ -32,13 +32,21 @@ function atm() {
       case "1": {
         while (true) {
           const input = prompt("State your tribute");
-          const action = exit(input, "transaction");
-          if (action === "menu") {
+          const choice = exit(input, "action");
+          if (choice === "menu") {
             break;
           }
 
-          alert(account.deposit(input));
-          break;
+          const result = account.deposit(input);
+          alert(result.message);
+
+          if (result.retry) {
+            continue;
+          }
+
+          else {
+            break;
+          }
         }
         break;
       }
@@ -51,17 +59,25 @@ function atm() {
           }
 
           const input = prompt("State your request");
-          const action = exit(input, "transaction");
+          const choice = exit(input, "action");
 
-          if (action === "menu") {
+          if (choice === "menu") {
             break;
           }
 
-          alert(account.withdrawal(input));
-          break;
+          const result = account.withdrawal(input);
+          alert(result.message);
+
+          if (result.retry) {
+            continue;
+          }
+
+          else {
+            break;
+          }
         }
+        break;
       }
-      break;
 
       case "3": {
         alert(account.getAccountName());
@@ -119,7 +135,7 @@ function exit(value, level) {
     return "quit";
   }
 
-  else if (level === "transaction") {
+  else if (level === "action") {
     return "menu";
   }
   return "cancel";
@@ -143,21 +159,33 @@ const account = {
   // deposit money onto the balance of the account
   deposit(input) {
     if(!isValidInput(input)) {
-      return this.accountError("The runes remain silent");
-      }
+      return {
+        message: this.accountError("The runes remain silent"), 
+        retry: true
+      };
+    }
 
     const num = Number(input);
     if (!isValidNumber(num)){
-      return this.accountError("The runes cannot read that value")
+      return {
+        message: this.accountError("The runes cannot read that value"),
+        retry: true
+      }
     }
 
     else if (num <= 0) {
-      return this.accountError("Gold of zero holds no worth!")
-  }
+      return {
+        message: this.accountError("Gold of zero holds no worth!");
+        retry: true
+      }
+    }
 
     else {
       this.balance += num;
-      return `The Vault has received your tribute.\nYour balance now shows: 🪙${this.balance}`
+      return {
+        message: `The Vault has received your tribute.\nYour balance now shows: 🪙${this.balance}`,
+        retry: false
+      }
     }
   },
 
@@ -165,27 +193,41 @@ const account = {
   withdrawal(input) {
 
     if(!isValidInput(input)) {
-      return this.accountError("The runes remain silent")
+      return {
+        message: this.accountError("The runes cannot read that value"),
+        retry: true
       }
+    }
 
     const num = Number(input);
     if (!isValidNumber(num)){
-      return this.accountError("The runes cannot read that value")
+      return {
+        message: this.accountError("The runes cannot read that value"),
+        retry: true
       }
+    }
 
     else if (num > this.balance) {
-      return this.accountError(`Your holdings cannot bear that cost\nYour balance shows: 🪙${this.balance}`)
+      return {
+        message: this.accountError(`Your holdings cannot bear that cost\nYour balance shows: 🪙${this.balance}`),
+        retry: true
       }
+    }
 
     else if (num <= 0) {
-      return this.accountError("Gold of zero holds no worth!")
+      return {
+        message: this.accountError("Gold of zero holds no worth!"),
+        retry: true
       }
+    }
 
     else {
       this.balance -= num;
-      return `Beware, seeker — gold is power and with great power comes great responsibility!\nTrade carefully!\nYour balance now shows: 🪙${this.balance}`
+      return {message: `Beware, seeker — gold is power and with great power comes great responsibility!\nYour balance now shows: 🪙${this.balance}`,
+      retry: false
       }
-    },
+    }
+  },
 
   // display an error message to the user
   accountError(message) {
