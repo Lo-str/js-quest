@@ -6,7 +6,7 @@ const archive = [];
 // handles accents, punctuation, double space, and lower case/Upper case letters
 const normalizedString = function (str) {
   if (typeof str !== "string") {
-    error("invalid input");
+    error("Foul script! Try again");
     return "";
   }
   return str
@@ -19,7 +19,7 @@ const normalizedString = function (str) {
 // asks for details and adds a new book object to the library
 function addBook(rawTitle, rawAuthor){
     if (!rawTitle || !rawAuthor) {
-        error("missing title or author");
+        error("The scroll lies blank — no word was given.");
         return;
     }
 
@@ -33,13 +33,13 @@ function addBook(rawTitle, rawAuthor){
  // display a list of all books and their authors. One per line with map()
 function listBooks(array) {
     if (isEmpty(array)) {
-        error("library empty");
+        error("The shelves are bare.");
         return;
     
     }
     const stringArray = array
     .map(function (book) {
-        return `${book.title} by ${book.author}. ${book.isRead ? "Read" : "Unread"}`
+        return `${book.title} by ${book.author}. ${book.isRead ? "Opened" : "Sealed"}`
     })
     .join("\n");
     alert(stringArray);
@@ -47,7 +47,7 @@ function listBooks(array) {
 
 function findBook(input) {
     if (!input) {
-        error("no input provided");
+        error("The scroll lies blank — no word was given.");
         return null;
     }
 
@@ -57,7 +57,7 @@ function findBook(input) {
     });
 
     if (!foundBook) {
-        alert("No matching book");
+        alert("No record found.");
             return null;
     }
     return foundBook;
@@ -66,7 +66,7 @@ function findBook(input) {
 // finds a book by title and sets isRead to true
 function markAsRead(input) {
     if (!input) {
-        error("no book title provided");
+        error("The scroll lies blank — no word was given.");
         return;
     }
 
@@ -75,20 +75,20 @@ function markAsRead(input) {
         return;
     }
     else if (book.isRead) {
-        alert("already read");
+        alert("Already in thy ledger.");
         return;
     }
 
-    const choice = confirm(`${book.title} by ${book.author} found. Would you like to mark it as read?`);
+    const choice = confirm(`${book.title} by ${book.author} awaits. Shall I mark it?`);
     if (choice) {
         book.isRead = true;
-        alert(`${book.title} now added to your read list`);
+        alert(`${book.title} is now unsealed.`);
     }
 };
 
 function removeBook(input) {
     if (!input) {
-        error("no book title provided");
+        error("The scroll lies blank — no word was given.");
         return;
     }
 
@@ -98,17 +98,17 @@ function removeBook(input) {
             return;
         }
             
-        const choice = confirm(`${book.title} found. Would you like to remove it?`);
+        const choice = confirm(`${book.title} uncovered. Banish it?`);
         if (choice) {
             const index = archive.indexOf(book);
             archive.splice(index, 1);
-            alert(`${book.title} by ${book.author} successfully removed from library.`);
+            alert(`${book.title} by ${book.author} erased from record.`);
         }        
 };
 
 // handles errors
 function error(message) {
-    alert(`Error, ${message}`);
+    alert(message);
 };
 
 function isEmpty(array){
@@ -122,7 +122,7 @@ function exit(value, level) {
   }
 
   else if (level === "menu") {
-    alert("May the realm favor your journey!")
+    alert("Depart in peace, seeker.")
     return "quit";
   }
 
@@ -136,7 +136,7 @@ function exit(value, level) {
 function lab() {
     let menu = true;
     while (menu) {
-        const options = prompt("Menu\n\n1. Add Book\n2. List\n3. Mark as read\n4. Remove book\n5. Exit\n\nChoose an option");
+        const options = prompt("Arcane Menu\n\nI. Add Tome\nII. View Shelves\nIII. Unseal\nIV. Remove Tome\nV. Take Leave\n\nChoose thy path");
         const action = exit(options, "menu");
         if (action === "quit") {
             break;
@@ -147,13 +147,13 @@ function lab() {
 
             // Add a book to library
             case "1":
-                const inputTitle = prompt("Enter a title");
+                const inputTitle = prompt("Name the tome");
                 const act1 = exit(inputTitle, "action");
                 if (act1 === "menu") {
                     break;
                 }
 
-                const inputAuthor = prompt("Enter an author");
+                const inputAuthor = prompt("Name the author");
                 const act2 = exit(inputAuthor, "action");
                 if (act2 === "menu") {
                     break;
@@ -164,14 +164,14 @@ function lab() {
                 }
                 else {
                 addBook(inputTitle, inputAuthor);
-                alert(`${inputTitle} by ${inputAuthor} has been added to you library!`)
+                alert(`${inputTitle} by ${inputAuthor} is now shelved in thy library!`)
                 break;
                 };
 
             // Display the library book list
             case "2":
                 if (isEmpty(archive)){
-                    alert("Library empty, add books first");
+                    alert("The shelves are bare — add tomes first.");
                     break;
                 }
                 else {
@@ -182,11 +182,11 @@ function lab() {
             // Mark the book as Read
             case "3":
                 if (isEmpty(archive)){
-                    alert("Library empty, add books first");
+                    alert("The shelves are bare — add tomes first.");
                     break;
                 }
                 else {
-                    const input = prompt("Choose a book");
+                    const input = prompt("Name the book you seek");
                     const action = exit(input, "action");
                     if (action === "menu") {
                         break
@@ -200,12 +200,12 @@ function lab() {
             // Remove book
             case "4":
                 if (isEmpty(archive)){
-                    alert("Library empty, add books first");
+                    alert("The shelves are bare — add tomes first.");
                     break;
                 }
 
                 else {
-                    const input = prompt("Choose a book");
+                    const input = prompt("Name the book you seek");
                     const action = exit(input, "action");
                     if (action === "menu") {
                         break
@@ -217,12 +217,12 @@ function lab() {
                 }
 
             case "5":
-                alert("bye")
+                alert("Depart in peace, seeker.")
                 menu = false;
                 break;
 
             default:
-                error("try again");
+                error("An error brews! Try again.");
                 break;
 
         }
