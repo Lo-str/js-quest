@@ -1,0 +1,70 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  script when using Vite + removed defer, no need with type="module"
+  <script type="module" src="/src/js/dōm-hall.js"></script>
+  <script src="../js/atm.js" defer></script> script when using Live Server (put defer back, no interaction with the DOM but good habit to have it for later)
+  <title>🜞 Dōm᛫Hall</title>
+</head>
+
+<body>
+  <header></header>
+  <main></main>
+  <footer></footer>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/ad7474103a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../styles/dōm-hall.scss">
+  <title>Typing Game</title>
+</head>
+
+<body>
+  <button id="settings-btn" class="settings-btn">
+    <i class="fas fa-cog"></i>
+  </button>
+
+  <div id="settings" class="settings">
+    <form id="settings-form">
+      <div>
+        <label for="difficutly" class="difficulty">Difficulty:</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <h2>Typing Game</h2>
+    <small>Type the following:</small>
+
+    <h1 id="word"></h1>
+
+    <input type="text" id="text" autocomplete="off" placeholder="Type the word here..." />
+
+    <p class="time-container">Time left: <span id="time">10s</span></p>
+
+    <p class="score-container">Score: <span id="score">0</span></p>
+
+    <div id="end-game-container" class="end-game-container"></div>
+  </div>
+
+  <script src="/src/js/index.js"></script>
+
+</body>
+
+</html>

@@ -53,7 +53,7 @@
 
   isNaN(variableName)
 
-  ================  THE LABORATORIUM  ================
+  ================  THE ARCANE LABORATORIUM  ================
 
     Create a small app to track books you’ve read or want to read. Use prompt and alert to simulate the menu.
 
@@ -85,3 +85,42 @@
     · forEach( )
     · find( )
     · filter( )
+
+================  Dōm᛫Hall ================
+
+PART 1
+
+- Create a addWordToDOM function that will update the ”word” element with a random item from the words array
+
+- Create a updateScore function that will increment score by +1
+
+- Add an event listener to the ”text” element. When you type in the correct word, the function should:
+
+· Call updateScore
+· give the user a new word by calling addWordToDOM
+· increment time by 5 seconds
+· reset the input to empty string
+
+PART 2
+
+- Create a updateTime function using the setInterval( ) method, every time it runs it should decrement -1 from the timer. Stop the timer when it reaches zero.
+
+- Create a gameOver function that will display the end-game-container once the timer hits zero
+
+PART 3, OPTIONAL:
+
+- Add an event listener to the settings button that will hide the settings
+
+- Add an event listener for the settings form so that you can change the difficulty
+
+- Set time depending on difficulty in the eventlistener
+
+YOU ARE NOT ALLOWED TO CHANGE ANYTHING IN THE HTML FILE!
+
+QUICK TIP:
+
+The end-game-container is currently set to display: none, you need to change the styling using JavaScript for it to show up.
+
+To create a button that will restart your game, you can use the onClick=”location.reload” attribute inside your button tag
+
+I have created some starting code for you, with complete HTML/CSS, and some JavaScript to start things off. The code can be found in the lesson folder inside the “typing-game-starter-master” folder. Download this folder to y
