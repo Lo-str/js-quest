@@ -123,4 +123,4 @@ The end-game-container is currently set to display: none, you need to change the
 
 To create a button that will restart your game, you can use the onClick=”location.reload” attribute inside your button tag
 
-I have created some starting code for you, with complete HTML/CSS, and some JavaScript to start things off. The code can be found in the lesson folder inside the “typing-game-starter-master” folder. Download this folder to y
+I have created some starting code for you, with complete HTML/CSS, and some JavaScript to start things off. The code can be found in the lesson folder inside the “typing-game-starter-master” folder.
